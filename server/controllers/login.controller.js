@@ -84,20 +84,19 @@ exports.iniciarSesion = async (req, res) => {
     }
 }
 
-
 exports.registrarse = async(req,res) => {
     try{
         const { correo, password,  nombre_padre, nombre_hijo, nickname_hijo, sexo_hijo, fecha_nac_hijo,edad, departamento, municipio, descripcion, telefono, dinero} = req.body
 
         let sqlPadre = `INSERT INTO PADRE VALUES ('${correo}', '${password}','${nombre_padre}',${telefono}, ${dinero})`
-
         let sqlDireccion = `INSERT INTO DIRECCION VALUES (null, '${departamento}','${municipio}','${descripcion}', '${correo}')`
-
         let sqlHijo = `INSERT INTO HIJO VALUES ('${nickname_hijo}', '${nombre_hijo}','${sexo_hijo}','${fecha_nac_hijo}',${edad},'${password}', 0, '${correo}')`
+        let sqlConversacion = `INSERT INTO CONVERSACION VALUES (NULL, 'Osman Perez','${nickname_hijo}')`
 
         await BD.Open(sqlPadre, [], true);
         await BD.Open(sqlHijo, [], true);
         await BD.Open(sqlDireccion, [], true);
+        await BD.Open(sqlConversacion, [],true);
 
         res.json({"Info": "Usuario creado exitosamente"})
     }
