@@ -39,7 +39,18 @@ exports.enviarCarta =async (req,res)=>{
         await BD.Open(actualizarBastones, [], true);
 
 
-        res.json({"info":"Carta Registrada"});
+        let selectUltimaCarta = `SELECT * FROM CARTA WHERE HIJO_FK = '${nickname}' AND ROWNUM =1 ORDER BY ID_CARTA DESC`
+        let resultselect = await BD.Open(selectUltimaCarta,[],false);
+        let ultimacarta = [];
+
+        ultimacarta = resultselect.rows.map(ultima=>{
+            let schemaultima ={
+                "id_carta":ultima[0]
+            }
+            return schemaultima
+        })
+
+        res.json(ultimacarta[0]);
 
     } catch (error) {
 

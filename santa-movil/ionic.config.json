@@ -1,0 +1,7 @@
+{
+  "name": "santa-movil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

@@ -1,7 +1,0 @@
-{
-  "name": "santaMovil",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

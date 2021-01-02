@@ -1,4 +1,9 @@
 .App {
+  background-image: url("img/fondo_nieve.jpg");
+  text-align: center;
+}
+.FondoHijo{
+  background-image: url("img/fondo.jpg");
   text-align: center;
 }
 
@@ -14,14 +19,125 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  min-height: 48vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+#growth {
+  display: flex ;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 200vh;
+  padding: 1rem;
+  overflow-y: scroll;
+}
+#growth2 {
+  display: flex ;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 50%;
+  overflow-y: scroll;
+}
+#growth5 {
+  display: flex ;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 50%;
+  overflow-y: scroll;
+}
+#growth3 {
+  background-image: url("img/carta_santa.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+  display: flex ;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 50%;
+}
+#growth4 {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex ;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 50%;
+}
+
+.App-header-hijo {
+  background-image: url("img/feliz_navidad.png");
+  text-align: center;
+  margin-left: 28rem;
+  padding: 1rem;
+  min-height: 48vh;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height: 90vh;
+}
+.contenedor
+{
+  display: flex ;
+  flex-wrap: wrap;
+  height: 6vh;
+  padding: 1rem;
+}
+.App-header-BuenasAcciones {
+  min-height: 100vh;
+  display: flex;
+  flex-direction:unset;
+  justify-content: center;
+  align-items: initial;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height:max-content;
+  top:10vh;
+  left: 0vh;
+}
+#bastones{
+  position: absolute;
+  top: 10vh;
+  left: 3vh;
+}
+#carta{
+  position: absolute;
+  top: 53vh;
+  left: 5vh;
+  resize: none;
+  width: 90vh;
+}
+#nombreCarta{
+  position: absolute;
+  top: 35vh;
+  left: 15vh;
+}
+#btnEnviar{
+  position: absolute;
+  top: 45vh;
+  left: 5vh;
+}
+.App-header-Redactar {
+  min-height: 100vh;
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: initial;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height:max-content;
+  top:10vh;
+  left: 0vh;
 }
 
 .App-link {

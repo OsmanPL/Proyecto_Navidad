@@ -2,10 +2,10 @@ const BD = require('../../config/conexion');
 
 exports.getJuguetes = async (req, res) => {
     try {
-        const { categoria, edad } = req.body;
+        const { categoria, edad, dinero } = req.body;
         let usuarios = [];
         if (categoria == 'todo') {
-            let query = `SELECT * FROM JUGUETE WHERE Edad=${edad}`;
+            let query = `SELECT * FROM JUGUETE WHERE Edad=${edad} AND Precio<=${dinero}`;
             let result = await BD.Open(query, [], false);
 
             usuarios = result.rows.map(user => {
@@ -20,7 +20,7 @@ exports.getJuguetes = async (req, res) => {
                 return usuariosSchema
             })
         } else {
-            let query = `SELECT * FROM JUGUETE WHERE Categoria='${categoria}' AND Edad=${edad}`;
+            let query = `SELECT * FROM JUGUETE WHERE Categoria='${categoria}' AND Edad=${edad} AND Precio<=${dinero}`;
             let result = await BD.Open(query, [], false);
 
             usuarios = result.rows.map(user => {

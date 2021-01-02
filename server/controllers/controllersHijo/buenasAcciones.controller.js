@@ -2,7 +2,7 @@ const BD = require('../../config/conexion');
 
 exports.getBuenasAcciones = async (req, res) => {
     try{
-       const {edad} = req.body
+       const {edad} = req.params
         let query = `SELECT * FROM BUENA_ACCION WHERE Edad=${edad}`;
         let result = await BD.Open(query, [], false);
         let usuarios = [];
