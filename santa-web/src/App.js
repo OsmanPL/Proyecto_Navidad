@@ -21,7 +21,7 @@ function App() {
         <Router path="/registro" exact>
           <RegistroPage />
         </Router>
-        <Router path={"/hijo/:nickname"} exact>
+        <Router path={"/hijo/:nickname"} exact> 
           <HijoPerfilPage/>
         </Router>
         <Router path={"/buenasAccionesHijo/:nickname"} exact>
