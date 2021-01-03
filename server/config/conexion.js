@@ -1,6 +1,10 @@
 const oracledb = require('oracledb');
 
-
+credentials = {
+    user: "",
+    password: "",
+    connectString: ""
+}
 
 try {
     oracledb.initOracleClient({libDir: 'C:\\Oracle\\instantclient_19_9'});
