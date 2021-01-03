@@ -12,6 +12,7 @@ exports.getPublicaciones = async (req, res) => {
                 "ID_Publicacion": user[0],
                 "Publicacion": user[1],
                 "Imagen": user[2],
+                "Santa":user[3],
                 "Comentarios":[]
             }
 

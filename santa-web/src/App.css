@@ -6,12 +6,53 @@
   background-image: url("img/fondo.jpg");
   text-align: center;
 }
+.FondoAdmin{
+  background-image: url("img/fondo-admin.jpg");
+  background-size: cover;
+  text-align: center;
+}
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+#comentario{
+  resize: none;
+}
+#publicacion{
+  width: 100%;
+}
+#publicaciones{
+  display: flex ;
+  flex-wrap:wrap;
+  flex-direction: row;
+  height: 89vh;
+  width: 200vh;
+  padding: 1rem;
+  overflow-y: scroll;
+}
+.App-header-Perfil-Santa{
+  min-height: 174vh;
+  display: flex;
+  flex-direction:column;
+  align-items: initial;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height:max-content;
+  top:10vh;
+  left: 0vh;
+}
+.App-header-Mensajeria{
+  min-height: 82.9vh;
+  display: flex;
+  flex-direction:row;
+  align-items: initial;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height:max-content;
+  top:10vh;
+  left: 0vh;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -27,7 +68,16 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+#cartas {
+  display: flex ;
+  flex-wrap:wrap;
+  align-items: center;
+  flex-direction:column;
+  height: 100vh;
+  width: 200vh;
+  padding: 1rem;
+  overflow-y: scroll;
+}
 #growth {
   display: flex ;
   flex-wrap: wrap;
@@ -61,6 +111,19 @@
   height: 100vh;
   width: 50%;
 }
+#elfo{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#mensajes{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  height: 110vh;
+  overflow-y: scroll;
+}
 #growth4 {
   background-repeat: no-repeat;
   background-size: cover;
@@ -85,6 +148,48 @@
   font-size: calc(10px + 2vmin);
   color: white;
   height: 90vh;
+}
+.App-header-admin {
+  background-image: url("img/feliz-navidad-admin.png");
+  text-align: center;
+  margin-left: 28rem;
+  padding: 1rem;
+  min-height: 48vh;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height: 91vh;
+}
+.App-header-admin-buenas{
+  text-align: center;
+  margin-left: 28rem;
+  padding: 1rem;
+  min-height: 48vh;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  height: 91vh;
+}
+#tablaBuenasAcciones{
+  position: absolute;
+  top: 15%;
+  left:2%;
+  overflow-y: scroll;
+  width: 63%;
+  height: 70%;
+}
+#btnCrearBuenaAccion{
+  position: absolute;
+  top: 10%;
+  left:2%;
 }
 .contenedor
 {

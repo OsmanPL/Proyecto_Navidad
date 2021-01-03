@@ -87,20 +87,29 @@ exports.iniciarSesion = async (req, res) => {
 
 exports.registrarse = async(req,res) => {
     try{
-        const { correo, password,  nombre_padre, nombre_hijo, nickname_hijo, sexo_hijo, fecha_nac_hijo, departamento, municipio, descripcion, telefono, dinero} = req.body
+
+        const { correo, password,  nombre_padre, nombre_hijo, nickname_hijo, sexo_hijo, fecha_nac_hijo, departamento, municipio, descripcion,longitud, latitud,telefono, dinero} = req.body
 
         console.log(req.body)
         edad = calcularEdad(fecha_nac_hijo)
+        try {
+            let sqlPadre = `INSERT INTO PADRE VALUES ('${correo}', '${password}','${nombre_padre}',${telefono}, ${dinero})`
+            let sqlDireccion = `INSERT INTO DIRECCION VALUES (null, '${departamento}','${municipio}','${descripcion}', ${latitud}, ${longitud},'${correo}')`    
+            await BD.Open(sqlPadre, [], true);
+            await BD.Open(sqlDireccion, [], true);
+        } catch (error) {
+            
+        }
+        try {
+            let sqlHijo = `INSERT INTO HIJO VALUES ('${nickname_hijo}', '${nombre_hijo}','${sexo_hijo}','${fecha_nac_hijo}',${edad},'${password}', 0, '${correo}')`
+            let sqlConversacion = `INSERT INTO CONVERSACION VALUES (NULL, 'Osman Perez','${nickname_hijo}')`
 
-        let sqlPadre = `INSERT INTO PADRE VALUES ('${correo}', '${password}','${nombre_padre}',${telefono}, ${dinero})`
-        let sqlDireccion = `INSERT INTO DIRECCION VALUES (null, '${departamento}','${municipio}','${descripcion}', '${correo}')`
-        let sqlHijo = `INSERT INTO HIJO VALUES ('${nickname_hijo}', '${nombre_hijo}','${sexo_hijo}','${fecha_nac_hijo}',${edad},'${password}', 0, '${correo}')`
-        let sqlConversacion = `INSERT INTO CONVERSACION VALUES (NULL, 'Osman Perez','${nickname_hijo}')`
-
-        await BD.Open(sqlPadre, [], true);
         await BD.Open(sqlHijo, [], true);
-        await BD.Open(sqlDireccion, [], true);
         await BD.Open(sqlConversacion, [],true);
+        } catch (error) {
+            
+        }
+       
 
         res.json({"Info": "Usuario creado exitosamente"})
     }

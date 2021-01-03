@@ -1,8 +1,7 @@
 import renos from '../img/renos.png';
-import PerfilHijo from '../components/PerfilHijo';
+import PerfilAdmin from '../components/PerfilAdmin';
 import Badge from 'react-bootstrap/Badge';
-import Navegacion from '../components/Navegacion';
-
+import NavegacionAdmin from '../components/NavegacionAdmin';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavItem from 'react-bootstrap/NavItem';
@@ -20,23 +19,14 @@ class HijoPage extends Component {
         this.load();
     }
     load = async()=>{
-        let paths = window.location.pathname.split('/');
-        let nickname = paths[paths.length - 1];
-        await axios.get(urlServer+`/recuperarHijo/recuperarHijo/${nickname}`)
-        .then(response=>{
-            this.hijo=response.data;
-        })
-        .catch(error=>{
-            alert(error);
-        })
-        alert("Bienvenido(a) "+this.hijo.Nombre+"\nFelices Fiestas")
+        alert("Bienvenido(a) Administrador(a)\nFelices Fiestas")
     }
     render() {
         return (
-            <div className="FondoHijo">
-            <Navegacion/>
-                <div className="App-header-hijo">
-                    <PerfilHijo />
+            <div className="FondoAdmin">
+            <NavegacionAdmin/>
+                <div className="App-header-admin">
+                    <PerfilAdmin />
                 </div>
             </div>
         )

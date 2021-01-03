@@ -5,6 +5,6 @@ const buenasController = require("../../controllers/controllersAdmin/buenasAccio
 router.get("/buenasAcciones", buenasController.getBuenasAcciones)
 router.post("/crearBuenaAccion",buenasController.insertBuenaAccion)
 router.put("/actualizarBuenaAccion",buenasController.updateBuenaAccion)
-router.delete("/eliminarBuenaAccion",buenasController.deleteBuenaAccion)
+router.delete("/eliminarBuenaAccion/:id",buenasController.deleteBuenaAccion)
 
 module.exports = router

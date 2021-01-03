@@ -56,13 +56,34 @@ exports.updateProducto = async (req,res)=>{
 
 exports.deleteProducto = async (req,res)=>{
     try {
-        const {id} = req.body;
+        
+        const {id} = req.params;
+        let sql = `SELECT * FROM JUGUETE_CARTA WHERE Juguete_FK=${id}`;
+        let result = await BD.Open(sql, [], false);
+        let juguetes = [];
+
+        juguetes = result.rows.map(juguete=>{
+            jugueteSchema={
+                Carta_FK:juguete[2],
+                Total:juguete[4]
+            }
+            return jugueteSchema;
+        })
+        for(i=0;i<juguetes.length;i++){
+            let carta = `UPDATE CARTA SET Precio_Total=(Precio_Total-${juguetes[i].Total}) WHERE ID_CARTA=${juguetes[i].Carta_FK}`
+            await BD.Open(carta,[],true);
+        }
+
+
+
+        let query2 = `DELETE FROM JUGUETE_CARTA WHERE Juguete_FK = ${id}`
+        await BD.Open(query2,[],true);
         let query = `DELETE FROM JUGUETE WHERE ID_Juguete = ${id}`
         await BD.Open(query,[],true);
 
         res.json({"info":"Producto Eliminado"})
     } catch (error) {
         console.log("Error al realizar la consulta => ", error)
-        res.json({})
+        res.json({"info":"No se puede eliminar este producto ya que se encuentra en alguna lista de deseos"})
     }
 }

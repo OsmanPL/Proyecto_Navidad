@@ -106,17 +106,6 @@ class RedactarCarta extends Component {
             alert("No se envio carta por una de las siguientes razones\n1. No cuenta con los bastones necesarios\n2. La carta esta vacia\n3. La lista de deseos esta vacia")
         }
     }
-
-
-    clickPerfil = () => {
-        window.location.href = `http://localhost:8001/hijo/${this.state.hijo.Nickname}`
-    }
-    clickBuenasAcciones = () => {
-        window.location.href = `http://localhost:8001/buenasAccionesHijo/${this.state.hijo.Nickname}`
-    }
-    clickRedactarCarta = () => {
-        window.location.href = `http://localhost:8001/redactarCarta/${this.state.hijo.Nickname}`
-    }
     componentDidMount = async () => {
         this.load();
     }
@@ -169,24 +158,7 @@ class RedactarCarta extends Component {
     render() {
         return (
             <div className="FondoHijo">
-                <Navbar bg="primary" variant="dark">
-                    <NavItem > <Button variant="outline-light" onClick={() => this.clickPerfil()}>Perfil Hijo</Button>
-                    </NavItem>
-                    <Nav className="mr-auto">
-                        <NavItem > <Button variant="outline-light" onClick={() => this.clickBuenasAcciones()}>Buenas Acciones</Button>
-                        </NavItem>
-                        <NavItem > <Button variant="outline-light" onClick={() => this.clickRedactarCarta()}>Redactar Carta</Button>
-                        </NavItem>
-                        <NavItem > <Button variant="outline-light">Ver Cartas</Button>
-                        </NavItem>
-                        <NavItem > <Button variant="outline-light">Perfil Santa</Button>
-                        </NavItem>
-                        <NavItem > <Button variant="outline-light">Mensajeria</Button>
-                        </NavItem>
-                        <NavItem > <a href="/"><Button variant="outline-light">Cerrar Sesion</Button></a>
-                        </NavItem>
-                    </Nav>
-                </Navbar>
+                <Navegacion/>
                 <div className="App-header-Redactar">
                     <div id="growth3">
                         <h2><Badge pill variant="danger" id="bastones">Bastones: {this.state.hijo.Bastones} </Badge></h2>

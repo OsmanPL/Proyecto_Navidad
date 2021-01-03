@@ -2,7 +2,7 @@ const BD = require('../../config/conexion');
 
 exports.getMensajes = async (req,res) =>{
     try {
-        const {nickname}=req.body
+        const {nickname}=req.params
         let query = `SELECT * FROM CONVERSACION WHERE Hijo_FK = '${nickname}'`;
         let result = await BD.Open(query, [], false);
         let usuarios = [];
@@ -36,7 +36,7 @@ exports.getMensajes = async (req,res) =>{
             usuarios[i].Mensajes = comentarios
         }
 
-        res.json(usuarios);
+        res.json(usuarios[0]);
     } catch (error) {
         console.log("Error al realizar la consulta => ",error)
         res.json({})

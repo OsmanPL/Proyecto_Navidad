@@ -62,7 +62,7 @@ exports.enviarCarta =async (req,res)=>{
 
 exports.verCartas = async (req,res) =>{
     try {
-        const {nickname}=req.body
+        const {nickname}=req.params
         let query = `SELECT * FROM CARTA WHERE Hijo_FK = '${nickname}'`;
         let result = await BD.Open(query, [], false);
         let usuarios = [];
@@ -123,7 +123,6 @@ exports.verCartas = async (req,res) =>{
             }
             usuarios[i].ListaDeseos = comentarios
         }
-
         res.json(usuarios);
     } catch (error) {
         

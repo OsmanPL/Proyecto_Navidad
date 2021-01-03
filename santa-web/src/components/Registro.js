@@ -23,6 +23,8 @@ class Login extends Component {
             departamento: '',
             municipio: '',
             descripcion: '',
+            latitud:0,
+            longitud:0,
             telefono: 0,
             dinero: 0
         }
@@ -71,65 +73,7 @@ class Login extends Component {
         { val: '30', desc: '30' },
         { val: '31', desc: '31' },
     ]
-    dias30 = [{ val: '1', desc: '1' },
-    { val: '2', desc: '2' },
-    { val: '3', desc: '3' },
-    { val: '4', desc: '4' },
-    { val: '5', desc: '5' },
-    { val: '6', desc: '6' },
-    { val: '7', desc: '7' },
-    { val: '8', desc: '8' },
-    { val: '9', desc: '9' },
-    { val: '10', desc: '10' },
-    { val: '11', desc: '11' },
-    { val: '12', desc: '12' },
-    { val: '13', desc: '13' },
-    { val: '14', desc: '14' },
-    { val: '15', desc: '15' },
-    { val: '16', desc: '16' },
-    { val: '17', desc: '17' },
-    { val: '18', desc: '18' },
-    { val: '19', desc: '19' },
-    { val: '20', desc: '20' },
-    { val: '21', desc: '21' },
-    { val: '22', desc: '22' },
-    { val: '23', desc: '23' },
-    { val: '24', desc: '24' },
-    { val: '25', desc: '25' },
-    { val: '26', desc: '26' },
-    { val: '27', desc: '27' },
-    { val: '28', desc: '28' },
-    { val: '29', desc: '29' },
-    { val: '30', desc: '30' },]
-    dias29 = [{ val: '1', desc: '1' },
-    { val: '2', desc: '2' },
-    { val: '3', desc: '3' },
-    { val: '4', desc: '4' },
-    { val: '5', desc: '5' },
-    { val: '6', desc: '6' },
-    { val: '7', desc: '7' },
-    { val: '8', desc: '8' },
-    { val: '9', desc: '9' },
-    { val: '10', desc: '10' },
-    { val: '11', desc: '11' },
-    { val: '12', desc: '12' },
-    { val: '13', desc: '13' },
-    { val: '14', desc: '14' },
-    { val: '15', desc: '15' },
-    { val: '16', desc: '16' },
-    { val: '17', desc: '17' },
-    { val: '18', desc: '18' },
-    { val: '19', desc: '19' },
-    { val: '20', desc: '20' },
-    { val: '21', desc: '21' },
-    { val: '22', desc: '22' },
-    { val: '23', desc: '23' },
-    { val: '24', desc: '24' },
-    { val: '25', desc: '25' },
-    { val: '26', desc: '26' },
-    { val: '27', desc: '27' },
-    { val: '28', desc: '28' },]
-    dias = []
+    
     mes = [
         { val: '1', desc: 'Enero' },
         { val: '2', desc: 'Febrero' },
@@ -186,6 +130,8 @@ class Login extends Component {
                 departamento:this.state.form.departamento,
                 municipio:this.state.form.municipio,
                 descripcion:this.state.form.descripcion,
+                latitud:this.state.form.latitud,
+                longitud:this.state.form.longitud,
                 telefono:this.state.form.telefono,
                 dinero:this.state.form.dinero
             })
@@ -258,6 +204,21 @@ class Login extends Component {
                     <Form.Group as={col} controlId="formBasicEmail">
                         <Form.Label><Badge variant="danger">Inversion</Badge></Form.Label>
                         <Form.Control type="text" placeholder="Ingrese Dinero a Invertir" name="dinero" onChange={this.handleChange} />
+                        <Form.Text className="text-muted" >
+                        </Form.Text>
+                    </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                    <Form.Group as={col} controlId="formBasicEmail">
+                        <Form.Label><Badge variant="danger">Latitud</Badge></Form.Label>
+                        <Form.Control type="text" placeholder="Ingrese Latitud" name="latitud" onChange={this.handleChange} />
+                        <Form.Text className="text-muted" >
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group as={col} controlId="formBasicEmail">
+                        <Form.Label><Badge variant="danger">Longitud</Badge></Form.Label>
+                        <Form.Control type="text" placeholder="Ingrese Longitud" name="longitud" onChange={this.handleChange} />
                         <Form.Text className="text-muted" >
                         </Form.Text>
                     </Form.Group>

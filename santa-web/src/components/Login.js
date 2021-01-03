@@ -25,7 +25,6 @@ class Login extends Component {
         var valido={};
        await axios.get(urlServer+`/login/iniciarSesion/${this.state.form.user}/${this.state.form.password}`)
         .then(response=>{
-            alert(JSON.stringify(response.data));
             valido=response.data;
         })
         .catch(error=>{
@@ -36,6 +35,9 @@ class Login extends Component {
             if(valido.tipo=='Hijo'){
                 alert("Usuario Hijo "+valido.user+" ha iniciado sesion")
                 window.location.href = `http://localhost:8001/hijo/${valido.user}`
+            }else if(valido.tipo=='Administrador'){
+                alert("Usuario Administrador "+valido.user+" ha iniciado sesion")
+                window.location.href = `http://localhost:8001/administrador`
             }
         }
     }
