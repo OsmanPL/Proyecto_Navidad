@@ -5,6 +5,6 @@ const perfilControllerSanta = require("../../controllers/controllersAdmin/perfil
 router.get("/getPerfilesSanta", perfilControllerSanta.getPerfilesSanta)
 router.post("/crearSanta",perfilControllerSanta.insertSanta)
 router.put("/actualizarSanta",perfilControllerSanta.updateSanta)
-router.delete("/eliminarSanta",perfilControllerSanta.deleteSanta)
+router.delete("/eliminarSanta/:usuario",perfilControllerSanta.deleteSanta)
 
 module.exports = router

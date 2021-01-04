@@ -2,8 +2,7 @@ const BD = require('../../config/conexion');
 
 exports.getMensajes = async (req, res) => {
     try {
-        const { nickname } = req.body
-        let query = `SELECT * FROM CONVERSACION WHERE Hijo_FK = '${nickname}'`;
+        let query = `SELECT * FROM CONVERSACION`;
         let result = await BD.Open(query, [], false);
         let usuarios = [];
 

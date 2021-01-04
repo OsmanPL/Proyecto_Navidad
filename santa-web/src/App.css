@@ -186,6 +186,22 @@
   width: 63%;
   height: 70%;
 }
+#cargaMasiva{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top:50%;
+  left:10%;
+  color: black;
+}
+#tablaMensajes{
+  position: absolute;
+  top: 15%;
+  left:2%;
+  overflow-y: scroll;
+  width: 40%;
+  height: 70%;
+}
 #btnCrearBuenaAccion{
   position: absolute;
   top: 10%;

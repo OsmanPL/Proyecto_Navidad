@@ -10,6 +10,12 @@ import Mensajeria from './pages/Mensajeria';
 import AdminPage from './pages/AdminPage';
 import BuenasAccionesAdmin from './pages/BuenasAccionesAdmin';
 import Productos from './pages/Productos';
+import AdminHijo from './pages/AdminHijo';
+import AdminPadre from './pages/AdminPadre';
+import AdminSanta from './pages/AdminSanta';
+import AdminMensajeria from './pages/AdminMensajeria';
+import Reportes from './pages/Reportes';
+import CargaMasiva from './pages/CargaMasiva';
 import {
   BrowserRouter as Router,
   Switch,
@@ -53,6 +59,24 @@ function App() {
         </Router>
         <Router path={"/adminProductos"} exact>
           <Productos/>
+        </Router>
+        <Router path={"/adminHijo"} exact>
+          <AdminHijo/>
+        </Router>
+        <Router path={"/adminPadre"} exact>
+          <AdminPadre/>
+        </Router>
+        <Router path={"/adminSanta"} exact>
+          <AdminSanta/>
+        </Router>
+        <Router path={"/adminMensajeria"} exact>
+          <AdminMensajeria/>
+        </Router>
+        <Router path={"/adminReportes"} exact>
+          <Reportes/>
+        </Router>
+        <Router path={"/cargaMasiva"} exact>
+          <CargaMasiva/>
         </Router>
       </Switch>
     </Router>

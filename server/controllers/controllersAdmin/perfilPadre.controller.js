@@ -13,7 +13,7 @@ exports.getPadres = async (req, res) => {
                 "Nombre": santa[2],
                 "Telefono": santa[3],
                 "Dinero": santa[4],
-                "Direccion": []
+                "Direccion": {}
             }
             return santaSchema
         })
@@ -28,12 +28,14 @@ exports.getPadres = async (req, res) => {
                     "ID_Direccion": direccionQ[0],
                     "Departamento": direccionQ[1],
                     "Municipio": direccionQ[2],
-                    "Descripcion": direccionQ[3]
+                    "Descripcion": direccionQ[3],
+                    "Latitud":direccionQ[4],
+                    "Longitud":direccionQ[5]
                 }
                 return direccionSchema
             })
 
-            padres[i].Direccion = direccion
+            padres[i].Direccion = direccion[0]
         }
 
         res.json(padres)
@@ -45,12 +47,12 @@ exports.getPadres = async (req, res) => {
 
 exports.insertPadre = async (req, res) => {
     try {
-        const { correo, password, nombre, telefono, dinero, departamento, municipio, descripcion } = req.body;
+        const { correo, password, nombre, telefono, dinero, departamento, municipio, descripcion,latitud,longitud } = req.body;
 
         let sqlPadre = `INSERT INTO PADRE VALUES('${correo}','${password}','${nombre}',${telefono},${dinero})`;
         await BD.Open(sqlPadre, [], true);
 
-        let sqlDireccion = `INSERT INTO DIRECCION VALUES(NULL, '${departamento}','${municipio}','${descripcion}','${correo}')`
+        let sqlDireccion = `INSERT INTO DIRECCION VALUES(NULL, '${departamento}','${municipio}','${descripcion}',${latitud},${longitud},'${correo}')`
         await BD.Open(sqlDireccion, [], true);
 
         res.json({ "info": "Padre creado" })
@@ -63,12 +65,12 @@ exports.insertPadre = async (req, res) => {
 
 exports.updatePadre = async (req, res) => {
     try {
-        const { correo, password, nombre, telefono, dinero, departamento, municipio, descripcion } = req.body
+        const { correo, password, nombre, telefono, dinero, departamento, municipio, descripcion, latitud, longitud } = req.body
 
         let sqlPadre = `UPDATE PADRE SET Pasword='${password}',Nombre='${nombre}',Telefono=${telefono},Dinero=${dinero} WHERE Correo='${correo}'`;
         await BD.Open(sqlPadre, [], true);
 
-        let sqlDireccion = `UPDATE DIRECCION SET Departamento='${departamento}', Municipio='${municipio}', Descripcion='${descripcion}' WHERE Padre_FK='${correo}'`
+        let sqlDireccion = `UPDATE DIRECCION SET Departamento='${departamento}', Municipio='${municipio}', Descripcion='${descripcion}', LATITUD=${latitud}, LONGITUD='${longitud}' WHERE Padre_FK='${correo}'`
         await BD.Open(sqlDireccion, [], true);
 
         res.json({ "info": "Padre Modificado" })
@@ -80,7 +82,7 @@ exports.updatePadre = async (req, res) => {
 
 exports.deletePadre = async (req, res) => {
     try {
-        const { correo } = req.body;
+        const { correo } = req.params;
 
         let selectHijos = `SELECT * FROM HIJO WHERE  Padre_FK='${correo}'`
         let resultado1 = await BD.Open(selectHijos, [], false);
@@ -93,6 +95,9 @@ exports.deletePadre = async (req, res) => {
             }
             return hijoSchema;
         })
+
+        let deletebar = `DELETE FROM BUENA_ACCION_REALIZADA WHERE PADRE_FK='${correo}'`
+        await BD.Open(deletebar,[],true)
 
         let selectCartas = `SELECT * FROM CARTA WHERE  Padre_FK='${correo}'`
         let resultado2 = await BD.Open(selectCartas, [], false);
@@ -115,6 +120,8 @@ exports.deletePadre = async (req, res) => {
         await BD.Open(eliminarCarta, [], true);
 
         for (i = 0; i < hijos.length; i++) {
+            let deleteComentarios = `DELETE FROM COMENTARIO WHERE HIJO_FK='${hijos[i].Nickname}'`
+            await BD.Open(deleteComentarios,[],true);
             let selectConversaciones = `SELECT * FROM CONVERSACION WHERE HIJO_FK='${hijos[i].Nickname}'`
             let resultado3 = await BD.Open(selectConversaciones, [], false);
             let conversaciones = [];

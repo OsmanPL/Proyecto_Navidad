@@ -87,6 +87,7 @@ class RedactarCarta extends Component {
                 total:this.state.form.total
             }).then(response=>{
                 carta = response.data;
+                alert("Carta Enviada")
             }).catch(error=>{
                 alert(error)
             });
@@ -102,6 +103,7 @@ class RedactarCarta extends Component {
                     alert(error);
                 });
             }
+
         } else {
             alert("No se envio carta por una de las siguientes razones\n1. No cuenta con los bastones necesarios\n2. La carta esta vacia\n3. La lista de deseos esta vacia")
         }

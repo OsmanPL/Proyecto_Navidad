@@ -29,15 +29,15 @@ exports.getPerfilHijo = async (req, res) => {
 
 exports.insertHijo = async (req, res) => {
     try {
-        const { nickname, password, nombre, sexo, fecha, padre } = req.body;
+        const { nickname, password, nombre, sexo, fecha, padre, bastones} = req.body;
 
         edad = calcularEdad(fecha)
 
-        let sqlHijo = `INSERT INTO HIJO VALUES ('${nickname}', '${nombre}','${sexo}','${fecha}',${edad},'${password}', 0, '${padre}')`;
+        let sqlHijo = `INSERT INTO HIJO VALUES ('${nickname}', '${nombre}','${sexo}','${fecha}',${edad},'${password}', ${bastones}, '${padre}')`;
 
         await BD.Open(sqlHijo, [], true)
 
-        let sqlConversacion = `INSERT INTO CONVERSACION (NULL,'Osman Perez', ${nickname})`
+        let sqlConversacion = `INSERT INTO CONVERSACION VALUES(NULL,'Osman Perez', '${nickname}')`
         await BD.Open(sqlConversacion, [], true)
 
         res.json({ "info": "Hijo Creado" })
@@ -67,7 +67,7 @@ exports.updateHijo = async (req, res) => {
 
 exports.deleteHijo = async (req, res) => {
     try {
-        const { nickname } = req.body;
+        const { nickname } = req.params;
 
         let selectCartas = `SELECT * FROM CARTA WHERE  Hijo_FK='${nickname}'`
         let resultado2 = await BD.Open(selectCartas, [], false);
@@ -80,7 +80,11 @@ exports.deleteHijo = async (req, res) => {
             }
             return cartaSchema
         })
+        let deletebar = `DELETE FROM BUENA_ACCION_REALIZADA WHERE HIJO_FK='${nickname}'`
+        await BD.Open(deletebar,[],true)
 
+        let deleteComentarios = `DELETE FROM COMENTARIO WHERE HIJO_FK='${nickname}'`
+        await BD.Open(deleteComentarios,[],true);
         for (i = 0; i < cartas.length; i++) {
             let eliminarJugueteCarta = `DELETE FROM JUGUETE_CARTA WHERE CARTA_FK=${cartas[i].ID_Carta}`
             await BD.Open(eliminarJugueteCarta, [], true)

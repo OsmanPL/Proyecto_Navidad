@@ -5,6 +5,6 @@ const perfilPadreController = require("../../controllers/controllersAdmin/perfil
 router.get("/getPadres", perfilPadreController.getPadres)
 router.post("/crearPadre",perfilPadreController.insertPadre)
 router.put("/actualizarPadre",perfilPadreController.updatePadre)
-router.delete("/eliminarPadre",perfilPadreController.deletePadre)
+router.delete("/eliminarPadre/:correo",perfilPadreController.deletePadre)
 
 module.exports = router

@@ -5,6 +5,6 @@ const perfilHijoController = require("../../controllers/controllersAdmin/perfilH
 router.get("/getHijos", perfilHijoController.getPerfilHijo)
 router.post("/crearHijo",perfilHijoController.insertHijo)
 router.put("/actualizarHijo",perfilHijoController.updateHijo)
-router.delete("/eliminarHijo",perfilHijoController.deleteHijo)
+router.delete("/eliminarHijo/:nickname",perfilHijoController.deleteHijo)
 
 module.exports = router

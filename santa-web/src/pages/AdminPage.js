@@ -13,7 +13,7 @@ import axios from 'axios';
 
 const urlServer =`http://localhost:3000`;
 
-class HijoPage extends Component {
+class AdminPage extends Component {
     hijo={}
     componentDidMount() {
         this.load();
@@ -33,4 +33,4 @@ class HijoPage extends Component {
     }
 }
 
-export default HijoPage;
+export default AdminPage;

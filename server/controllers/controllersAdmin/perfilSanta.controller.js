@@ -54,7 +54,7 @@ exports.updateSanta = async (req, res) => {
 
 exports.deleteSanta = async (req, res) => {
     try {
-        const { usuario } = req.body
+        const { usuario } = req.params
 
         let selectPublicaciones = `SELECT * FROM PUBLICACION WHERE SANTA_FK='${usuario}'`
         let result = await BD.Open(selectPublicaciones,[],false);
@@ -68,11 +68,11 @@ exports.deleteSanta = async (req, res) => {
         });
 
         for (i=0;i<publicaciones.length;i++){
-            let eliminarComentario = `DELETE * FROM COMENTARIO WHERE Publicacion_FK=${publicaciones[i].ID_Publicacion}`;
+            let eliminarComentario = `DELETE  FROM COMENTARIO WHERE Publicacion_FK=${publicaciones[i].ID_Publicacion}`;
             await BD.Open(eliminarComentario,[],true);
         }
 
-        let deletePublicacion = `DELETE * FROM PUBLICACION WHERE SANTA_FK='${usuario}'`
+        let deletePublicacion = `DELETE  FROM PUBLICACION WHERE SANTA_FK='${usuario}'`
         await BD.Open(deletePublicacion,[],true);
 
         let sql = `DELETE FROM SANTA WHERE Usuario = '${usuario}'`

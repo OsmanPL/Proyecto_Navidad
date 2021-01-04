@@ -168,7 +168,7 @@ class Productos extends Component {
                 </div>
                 <Modal show={this.state.ModalInsertar}>
                     <Modal.Header >
-                        <Modal.Title>Formulario Porducto</Modal.Title>
+                        <Modal.Title>Formulario Producto</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form.Group>

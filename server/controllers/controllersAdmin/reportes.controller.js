@@ -86,7 +86,7 @@ exports.bitacora = async (req, res) => {
     try {
         const { nickname } = req.body
 
-        let sql = `SELECT c.*, p2.PUBLICACION , p2.IMAGEN FROM COMENTARIO c , PUBLICACION p2 WHERE PUBLICACION_FK = p2.ID_PUBLICACION AND c.HIJO_FK = '${nickname}' ORDER BY c.ID_COMENTARIO ASC`;
+        let sql = `SELECT c.*, p2.PUBLICACION , p2.ID_Publicacion FROM COMENTARIO c , PUBLICACION p2 WHERE PUBLICACION_FK = p2.ID_PUBLICACION AND c.HIJO_FK = '${nickname}' ORDER BY c.ID_COMENTARIO ASC`;
         let result = await BD.Open(sql, [], true);
         let productos = [];
 
@@ -96,8 +96,7 @@ exports.bitacora = async (req, res) => {
                 "Hijo": producto[1],
                 "Comentario": producto[2],
                 "ID_Publicacion": producto[3],
-                "Publicacion": producto[4],
-                "Imagen": producto[5]
+                "Publicacion": producto[4]
             }
             return productoSchema
         })
