@@ -73,7 +73,7 @@ class Reportes extends Component {
         dataGrafica6: {
             labels: [],
             datasets: [{
-                label: 'Ventas',
+                label: 'Compras',
                 backgroundColor: '#05DC74',
                 borderColor: 'black',
                 borderWidth: 1,

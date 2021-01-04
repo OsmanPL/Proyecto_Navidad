@@ -116,7 +116,6 @@ class RedactarCarta extends Component {
         if (this.state.form.categoria != '' || this.state.form.categoria != 'todo' || this.state.form.categoria != 'todos') {
             await axios.post(urlServer + `/hijoJuguetes/juguetes`, {
                 categoria: this.state.form.categoria,
-                edad: this.state.hijo.Edad,
                 dinero: this.state.padre.Dinero
             }).then(response => {
                 this.setState({ juguetes: response.data });

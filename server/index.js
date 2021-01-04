@@ -19,6 +19,7 @@ const adminPerfilHijo = require('./routes/routesAdmin/perfilHijo.route')
 const adminConversacion = require('./routes/routesAdmin/conversacion.route')
 const adminReportes1 = require('./routes/routesAdmin/reportes1.route')
 const adminReportes2 = require('./routes/routesAdmin/reportes2.route')
+const recuperarProducto = require('./routes/routesAdmin/recuperarProducto.route')
 
 //Padre
 const padreBuenasAcciones = require('./routes/routesPadre/buenasAcciones.route')
@@ -61,6 +62,7 @@ app.use("/adminPerfilHijo",adminPerfilHijo)
 app.use("/adminConversacion",adminConversacion)
 app.use("/reportes1",adminReportes1)
 app.use("/reportes2",adminReportes2)
+app.use("/recuperarProducto",recuperarProducto)
 
 //Padre
 app.use("/padreBuenasAcciones",padreBuenasAcciones)

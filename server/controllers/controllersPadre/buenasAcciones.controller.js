@@ -40,13 +40,15 @@ exports.getBuenasAcciones = async (req, res) => {
 
 exports.confirmar = async (req, res) => {
     try {
-        const {id,nickname,estado, cantidad}=req.body
+        const {id,nickname,estado, cantidad,correo}=req.body
         let sql = `UPDATE BUENA_ACCION_REALIZADA SET ESTADO='${estado}' WHERE ID_Realizada=${id}`;
         await BD.Open(sql,[],true);
 
         if (estado == "Confirmada"){
             let query = `UPDATE HIJO SET Cantidad_Bastones=(Cantidad_Bastones+${cantidad}) WHERE NICKNAME='${nickname}'`;
             await BD.Open(query,[],true);
+            let sqlPadre = `UPDATE PADRE SET DINERO=(DINERO-${cantidad}) WHERE CORREO='${correo}'`
+            await BD.Open(sqlPadre,[],true)
         }
 
         res.json({"info":"Buena Accion "+estado})

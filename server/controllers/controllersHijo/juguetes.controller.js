@@ -2,10 +2,10 @@ const BD = require('../../config/conexion');
 
 exports.getJuguetes = async (req, res) => {
     try {
-        const { categoria, edad, dinero } = req.body;
+        const { categoria, dinero } = req.body;
         let usuarios = [];
         if (categoria == 'todo') {
-            let query = `SELECT * FROM JUGUETE WHERE Edad=${edad} AND Precio<=${dinero}`;
+            let query = `SELECT * FROM JUGUETE WHERE Precio<=${dinero}`;
             let result = await BD.Open(query, [], false);
 
             usuarios = result.rows.map(user => {

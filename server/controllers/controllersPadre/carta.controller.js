@@ -79,10 +79,6 @@ exports.confirmar = async (req, res) => {
         const{id,estado,dinero, correo}=req.body
         let sqlCarta = `UPDATE CARTA SET ESTADO='${estado}' WHERE ID_CARTA=${id}`
         await BD.Open(sqlCarta,[],true);
-        if(estado=="Confirmada"){
-            let sqlPadre = `UPDATE PADRE SET DINERO=(DINERO-${dinero}) WHERE CORREO='${correo}'`
-            await BD.Open(sqlPadre,[],true)
-        }
         res.json({"info":"Carta "+estado})
     } catch (error) {
         console.log("Error al realizar la consulta => ", error)
