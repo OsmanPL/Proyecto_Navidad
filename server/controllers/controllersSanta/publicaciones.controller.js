@@ -74,8 +74,6 @@ exports.editarPublicacion = async (req,res)=>{
 exports.eliminarPublicacion = async (req,res)=>{
     try {
         const{id}=req.body
-        let sqlComentario = `DELETE FROM COMENTARIO WHERE PUBLICACION_FK=${id}`
-        await BD.Open(sqlComentario,[],true);
         let sqlPublicacion = `DELETE FROM PUBLICACION WHERE ID_PUBLICACION=${id}`
         await BD.Open(sqlPublicacion,[],true);
 

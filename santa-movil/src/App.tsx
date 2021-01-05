@@ -1,8 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -22,13 +21,48 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Registro from './pages/Registro';
+import Login from './pages/Login';
+import { keyOutline, addCircleOutline } from 'ionicons/icons'
+import PerfilPadre from './pages/PerfilPadre';
+import HijosPadre from './pages/HijosPadre';
+import PerfilHijoPadre from './pages/PerfilHijoPadre';
+import BuenasAccionesHijo from './pages/BuenasAccionesHijo';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/home" component={Home} exact={true} />
-        <Route exact path="/" render={() => <Redirect to="/home" />} />
+      <IonMenu side="start" contentId="MenuLogin">
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Menu Login</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonList>
+            <IonMenuToggle>
+              <IonItem routerLink="/login" routerDirection="none">
+                <IonIcon color="primary" slot="start" icon={keyOutline} />
+                <IonLabel>Login</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+            <IonMenuToggle>
+              <IonItem routerLink="/registro" routerDirection="none">
+                <IonIcon color="primary" slot="start" icon={addCircleOutline} />
+                <IonLabel>Registro</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+          </IonList>
+        </IonContent>
+      </IonMenu>
+      <IonRouterOutlet id="MenuLogin">
+        <Route path="/buenasAccionesHijo/:correo/:nickname" component={BuenasAccionesHijo} exact={true} />
+        <Route path="/perfilHijoPadre/:correo/:nickname" component={PerfilHijoPadre} exact={true} />
+        <Route path="/hijosPadre/:correo" component={HijosPadre} exact={true} />
+        <Route path="/perfilPadre/:correo" component={PerfilPadre} exact={true} />
+        <Route path="/registro" component={Registro} exact={true} />
+        <Route path="/login" component={Login} exact={true} />
+        <Route exact path="/" render={() => <Redirect to="/login" />} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

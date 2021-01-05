@@ -69,48 +69,6 @@ exports.deleteHijo = async (req, res) => {
     try {
         const { nickname } = req.params;
 
-        let selectCartas = `SELECT * FROM CARTA WHERE  Hijo_FK='${nickname}'`
-        let resultado2 = await BD.Open(selectCartas, [], false);
-        let cartas = [];
-
-
-        cartas = resultado2.rows.map(carta => {
-            let cartaSchema = {
-                ID_Carta: carta[0]
-            }
-            return cartaSchema
-        })
-        let deletebar = `DELETE FROM BUENA_ACCION_REALIZADA WHERE HIJO_FK='${nickname}'`
-        await BD.Open(deletebar,[],true)
-
-        let deleteComentarios = `DELETE FROM COMENTARIO WHERE HIJO_FK='${nickname}'`
-        await BD.Open(deleteComentarios,[],true);
-        for (i = 0; i < cartas.length; i++) {
-            let eliminarJugueteCarta = `DELETE FROM JUGUETE_CARTA WHERE CARTA_FK=${cartas[i].ID_Carta}`
-            await BD.Open(eliminarJugueteCarta, [], true)
-        }
-
-        let eliminarCarta = `DELETE FROM CARTA WHERE Hijo_FK='${nickname}'`;
-        await BD.Open(eliminarCarta, [], true);
-
-        let selectConversaciones = `SELECT * FROM CONVERSACION WHERE HIJO_FK='${nickname}'`
-        let resultado3 = await BD.Open(selectConversaciones, [], false);
-        let conversaciones = [];
-
-        conversaciones = resultado3.rows.map(conversacion => {
-            let conversacionSchema = {
-                ID_Conversacion: conversacion[0]
-            }
-            return conversacionSchema
-        })
-
-        for (j = 0; j < conversaciones.length; j++) {
-            let eliminarMensajes = `DELETE FROM MENSAJE WHERE Conversacion_FK=${conversaciones[i].ID_Conversacion}`
-            await BD.Open(eliminarMensajes, [], true)
-        }
-        let deleteConversaciones = `DELETE FROM CONVERSACION WHERE HIJO_FK='${nickname}'`
-        await BD.Open(deleteConversaciones, [], true)
-
         let sqlHijo = `DELETE FROM HIJO WHERE Nickname='${nickname}'`
         await BD.Open(sqlHijo, [], true);
 

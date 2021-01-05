@@ -14,7 +14,7 @@ exports.getPadre = async (req,res) =>{
                 "Nombre":santa[2],
                 "Telefono":santa[3],
                 "Dinero":santa[4],
-                "Direccion":[]
+                "Direccion":{}
             }
             return santaSchema
         })
@@ -29,12 +29,14 @@ exports.getPadre = async (req,res) =>{
                     "ID_Direccion":direccionQ[0],
                     "Departamento":direccionQ[1],
                     "Municipio":direccionQ[2],
-                    "Descripcion":direccionQ[3]
+                    "Descripcion":direccionQ[3],
+                    "Latitud":direccionQ[4],
+                    "Longitud":direccionQ[5]
                 }
                 return direccionSchema
             })
 
-            padres[i].Direccion = direccion
+            padres[i].Direccion = direccion[0]
         }
 
         res.json(padres[0])

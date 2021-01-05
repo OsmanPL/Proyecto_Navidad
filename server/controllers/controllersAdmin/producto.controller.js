@@ -74,10 +74,6 @@ exports.deleteProducto = async (req,res)=>{
             await BD.Open(carta,[],true);
         }
 
-
-
-        let query2 = `DELETE FROM JUGUETE_CARTA WHERE Juguete_FK = ${id}`
-        await BD.Open(query2,[],true);
         let query = `DELETE FROM JUGUETE WHERE ID_Juguete = ${id}`
         await BD.Open(query,[],true);
 

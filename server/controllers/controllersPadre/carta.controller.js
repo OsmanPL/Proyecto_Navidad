@@ -76,8 +76,8 @@ exports.verCartas = async (req, res) => {
 
 exports.confirmar = async (req, res) => {
     try {
-        const{id,estado,dinero, correo}=req.body
-        let sqlCarta = `UPDATE CARTA SET ESTADO='${estado}' WHERE ID_CARTA=${id}`
+        const{id}=req.body
+        let sqlCarta = `UPDATE CARTA SET ESTADO='Confirmada' WHERE ID_CARTA=${id}`
         await BD.Open(sqlCarta,[],true);
         res.json({"info":"Carta "+estado})
     } catch (error) {
@@ -88,21 +88,12 @@ exports.confirmar = async (req, res) => {
 
 exports.editarProducto=async(req,res)=>{
     try {
-        const{accion,idcarta,cantidadNueva,cantidadVieja,totalCarta,precioTotalProducto,idjp}=req.body
-        if(accion=="Eliminar"){
+        const{idcarta,totalCarta,precioTotalProducto,idjp}=req.body
             let sqlc = `UPDATE CARTA SET Precio_Total=(${totalCarta}-${precioTotalProducto}) WHERE ID_CARTA=${idcarta}`
             await BD.Open(sqlc,[],true);
             let sqljp = `DELETE FROM JUGUETE_CARTA WHERE ID_JugueteCarta=${idjp}`
             await BD.Open(sqljp,[],true);
-        }else if(accion=="Editar"){
-            let precioProducto = (precioTotalProducto/cantidadVieja)
-            let nuevoPrecio = (precioProducto*cantidadNueva)
-            let sqljp = `UPDATE JUGUETE_CARTA SET CANTIDAD=${cantidadNueva},TOTAL=${nuevoPrecio} WHERE ID_JugueteCarta=${idjp}`
-            await BD.Open(sqljp,[],true);
-            let sqlc = `UPDATE CARTA SET Precio_Total=((${totalCarta}-${precioTotalProducto})+${nuevoPrecio}) WHERE ID_CARTA=${idcarta}`
-            await BD.Open(sqlc,[],true);
-        }
-        res.json({"info":"Deseo "+accion})
+        res.json({"info":"Deseo Eliminado"})
     } catch (error) {
         console.log("Error al realizar la consulta => ", error)
         res.json({})

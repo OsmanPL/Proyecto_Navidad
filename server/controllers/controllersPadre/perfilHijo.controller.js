@@ -2,11 +2,11 @@ const BD = require('../../config/conexion');
 
 exports.updateHijo = async (req,res)=>{
     try {
-        const {nickname,password,nombre,sexo,fecha,bastones} = req.body;
+        const {nickname,password,nombre,sexo,fecha} = req.body;
 
         edad = calcularEdad(fecha)
 
-        let sqlHijo = `UPDATE HIJO SET Nombre='${nombre}', Sexo='${sexo}', Fecha_Nacimiento='${fecha}',Edad=${edad},Pasword='${password}',Cantidad_Bastones=${bastones} WHERE  Nickname='${nickname}'`;
+        let sqlHijo = `UPDATE HIJO SET Nombre='${nombre}', Sexo='${sexo}', Fecha_Nacimiento='${fecha}',Edad=${edad},Pasword='${password}' WHERE  Nickname='${nickname}'`;
 
         await BD.Open(sqlHijo,[],true)
 
@@ -19,7 +19,7 @@ exports.updateHijo = async (req,res)=>{
 }
 exports.getPerfilHijo = async (req, res) => {
     try {
-        const {correo}=req.body
+        const {correo}=req.params
         let sqlHijo = `SELECT * FROM HIJO WHERE PADRE_FK='${correo}'`;
         let resultHijo = await BD.Open(sqlHijo, [], false);
         let hijos = [];

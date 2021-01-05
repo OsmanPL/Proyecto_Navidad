@@ -57,8 +57,6 @@ exports.updateBuenaAccion = async (req, res) => {
 exports.deleteBuenaAccion = async (req, res) => {
     try {
         const { id } = req.params;
-        let query = `DELETE FROM BUENA_ACCION_REALIZADA WHERE ID_BuenaAccion_FK=${id}`
-        await BD.Open(query, [], true);
 
         let sql = `DELETE FROM BUENA_ACCION WHERE ID_BuenaAccion = ${id}`
 
