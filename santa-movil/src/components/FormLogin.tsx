@@ -2,7 +2,7 @@ import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonInput
 import React from 'react';
 import axios from 'axios';
 
-const urlServer = `http://34.70.211.238:3000`;
+const urlServer = `http://localhost:3000`;
 
 const FormLogin: React.FC = () => {
     const [user, setUser] = React.useState(String);
@@ -26,17 +26,17 @@ const FormLogin: React.FC = () => {
             console.log('si')
             if (valido.tipo === 'Hijo') {
                 alert("Usuario Hijo " + valido.user + " ha iniciado sesion")
-                window.location.href = `http://34.70.211.238:8001/hijo/${valido.user}`
+                window.location.href = `http://localhost:8001/hijo/${valido.user}`
             } else if (valido.tipo === 'Administrador') {
                 console.log('si')
                 alert("Usuario Administrador " + valido.user + " ha iniciado sesion")
-                window.location.href = `http://34.70.211.238:8001/administrador`
+                window.location.href = `http://localhost:8001/administrador`
             } else if (valido.tipo === 'Padre'){
                 alert("Usuario Padre " + valido.user + " ha iniciado sesion")
-                window.location.href = `http://34.70.211.238:8002/perfilPadre/${valido.user}`
+                window.location.href = `http://localhost:8002/perfilPadre/${valido.user}`
             } else if(valido.tipo === 'Santa'){
                 alert("Usuario Santa " + valido.user + " ha iniciado sesion")
-                window.location.href = `http://34.70.211.238:8002/publicacionesSanta/${valido.user}`
+                window.location.href = `http://localhost:8002/publicacionesSanta/${valido.user}`
             }
         }else{
             alert("El Usuario No existe")

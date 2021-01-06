@@ -12,7 +12,7 @@ import '../App.css';
 import axios from 'axios';
 import * as XLSX from 'xlsx';
 
-const urlServer = `http://34.70.211.238:3000`;
+const urlServer = `http://localhost:3000`;
 
 class CargaMasiva extends Component {
   constructor(props) {

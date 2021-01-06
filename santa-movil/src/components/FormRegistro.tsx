@@ -2,7 +2,7 @@ import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonInput
 import React from 'react';
 import axios from 'axios';
 
-const urlServer = `http://34.70.211.238:3000`;
+const urlServer = `http://localhost:3000`;
 
 const FormRegistro: React.FC = () => {
     const [correo, setCorreo] = React.useState(String);

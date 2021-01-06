@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 import { accessibilityOutline, happyOutline, backspaceOutline, clipboardOutline, desktopOutline, airplaneOutline, arrowUndoOutline, bagCheckOutline } from 'ionicons/icons';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-const urlServer = `http://34.70.211.238:3000`;
+const urlServer = `http://localhost:3000`;
 
 const Pedidos: React.FC = () => {
     let SchemaCarta = {
@@ -130,13 +130,13 @@ const Pedidos: React.FC = () => {
         })
     }
     function clickPublicaciones() {
-        window.location.href = `http://34.70.211.238:8002/publicacionesSanta/${userSanta}`
+        window.location.href = `http://localhost:8002/publicacionesSanta/${userSanta}`
     }
     function clickPedidos() {
-        window.location.href = `http://34.70.211.238:8002/pedidos/${userSanta}`
+        window.location.href = `http://localhost:8002/pedidos/${userSanta}`
     }
     function clickPedidosEntregados() {
-        window.location.href = `http://34.70.211.238:8002/pedidosEntregados/${userSanta}`
+        window.location.href = `http://localhost:8002/pedidosEntregados/${userSanta}`
     }
     return (
 

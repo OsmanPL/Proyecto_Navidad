@@ -8,36 +8,36 @@ import { useParams } from "react-router";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
-const urlServer = `http://34.70.211.238:3000`;
+const urlServer = `http://localhost:3000`;
 
 class NavegacionAdmin extends Component {
     hijo = {}
     clickPerfil = () => {
-        window.location.href = `http://34.70.211.238:8001/administrador`
+        window.location.href = `http://localhost:8001/administrador`
     }
     clickBuenasAcciones = () =>{
-        window.location.href = `http://34.70.211.238:8001/adminBuenasAcciones`
+        window.location.href = `http://localhost:8001/adminBuenasAcciones`
     }
     clickProductos = () =>{
-        window.location.href = `http://34.70.211.238:8001/adminProductos`
+        window.location.href = `http://localhost:8001/adminProductos`
     }
     clickHijo = () =>{
-        window.location.href = `http://34.70.211.238:8001/adminHijo`
+        window.location.href = `http://localhost:8001/adminHijo`
     }
     clickPadre = () =>{
-        window.location.href = `http://34.70.211.238:8001/adminPadre`
+        window.location.href = `http://localhost:8001/adminPadre`
     }
     clickSanta = () =>{
-        window.location.href = `http://34.70.211.238:8001/adminSanta`
+        window.location.href = `http://localhost:8001/adminSanta`
     }
     clickMensajeria = () =>{
-        window.location.href = `http://34.70.211.238:8001/adminMensajeria`
+        window.location.href = `http://localhost:8001/adminMensajeria`
     }
     clickReportes =()=>{
-        window.location.href = `http://34.70.211.238:8001/adminReportes`
+        window.location.href = `http://localhost:8001/adminReportes`
     }
     clickCarga =()=>{
-        window.location.href = `http://34.70.211.238:8001/cargaMasiva`
+        window.location.href = `http://localhost:8001/cargaMasiva`
     }
     render() {
         return (

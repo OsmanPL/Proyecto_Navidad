@@ -16,7 +16,7 @@ import Table from 'react-bootstrap/Table';
 import '../App.css';
 import axios from 'axios';
 
-const urlServer = `http://34.70.211.238:3000`;
+const urlServer = `http://localhost:3000`;
 
 class AdminHijo extends Component {
     state = {

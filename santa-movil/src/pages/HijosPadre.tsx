@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 import {accessibilityOutline,happyOutline,backspaceOutline } from 'ionicons/icons';
 
-const urlServer = `http://34.70.211.238:3000`;
+const urlServer = `http://localhost:3000`;
 
 const HijosPadre: React.FC = () => {
     let hijo={
@@ -44,13 +44,13 @@ const HijosPadre: React.FC = () => {
 
     }
     function clickPerfil() {
-        window.location.href = `http://34.70.211.238:8002/perfilPadre/${correo}`
+        window.location.href = `http://localhost:8002/perfilPadre/${correo}`
     }
     function clickHijos() {
-        window.location.href = `http://34.70.211.238:8002/hijosPadre/${correo}`
+        window.location.href = `http://localhost:8002/hijosPadre/${correo}`
     }
     function irHijo(nickname:String){
-        window.location.href = `http://34.70.211.238:8002/perfilHijoPadre/${correo}/${nickname}`
+        window.location.href = `http://localhost:8002/perfilHijoPadre/${correo}/${nickname}`
     }
     return (
 

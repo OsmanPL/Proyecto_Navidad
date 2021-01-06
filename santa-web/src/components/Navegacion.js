@@ -7,27 +7,27 @@ import { useParams } from "react-router";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
-const urlServer =`http://34.70.211.238:3000`;
+const urlServer =`http://localhost:3000`;
 
 class Navegacion extends Component {
     hijo={}
     clickPerfil = () => {
-        window.location.href = `http://34.70.211.238:8001/hijo/${this.hijo.Nickname}`
+        window.location.href = `http://localhost:8001/hijo/${this.hijo.Nickname}`
     }
     clickBuenasAcciones = () =>{
-        window.location.href = `http://34.70.211.238:8001/buenasAccionesHijo/${this.hijo.Nickname}`
+        window.location.href = `http://localhost:8001/buenasAccionesHijo/${this.hijo.Nickname}`
     }
     clickRedactarCarta = () =>{
-        window.location.href = `http://34.70.211.238:8001/redactarCarta/${this.hijo.Nickname}`
+        window.location.href = `http://localhost:8001/redactarCarta/${this.hijo.Nickname}`
     }
     clickVerCartas = () =>{
-        window.location.href = `http://34.70.211.238:8001/verCartas/${this.hijo.Nickname}`
+        window.location.href = `http://localhost:8001/verCartas/${this.hijo.Nickname}`
     }
     clickPerfilSanta = () =>{
-        window.location.href = `http://34.70.211.238:8001/perfilSanta/${this.hijo.Nickname}`
+        window.location.href = `http://localhost:8001/perfilSanta/${this.hijo.Nickname}`
     }
     clickMensajeria = () =>{
-        window.location.href = `http://34.70.211.238:8001/mensajeria/${this.hijo.Nickname}`
+        window.location.href = `http://localhost:8001/mensajeria/${this.hijo.Nickname}`
     }
     componentDidMount() {
         this.load();
