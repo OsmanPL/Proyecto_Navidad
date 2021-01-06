@@ -28,6 +28,12 @@ import PerfilPadre from './pages/PerfilPadre';
 import HijosPadre from './pages/HijosPadre';
 import PerfilHijoPadre from './pages/PerfilHijoPadre';
 import BuenasAccionesHijo from './pages/BuenasAccionesHijo';
+import VerCartas from './pages/VerCartas';
+import VerDeseos from './pages/VerDeseos';
+import MensajesHijo from './pages/MensajesHijo';
+import PublicacionesSanta from './pages/PublicacionesSanta';
+import PedidosEntregados from './pages/PedidosEntregados';
+import Pedidos from './pages/Pedidos';
 
 const App: React.FC = () => (
   <IonApp>
@@ -56,6 +62,12 @@ const App: React.FC = () => (
         </IonContent>
       </IonMenu>
       <IonRouterOutlet id="MenuLogin">
+        <Route path="/pedidos/:santa" component={Pedidos} exact={true} />
+        <Route path="/pedidosEntregados/:santa" component={PedidosEntregados} exact={true} />
+        <Route path="/publicacionesSanta/:santa" component={PublicacionesSanta} exact={true} />
+        <Route path="/mensajes/:correo/:nickname" component={MensajesHijo} exact={true} />
+        <Route path="/deseos/:correo/:nickname/:id" component={VerDeseos} exact={true} />
+        <Route path="/cartas/:correo/:nickname" component={VerCartas} exact={true} />
         <Route path="/buenasAccionesHijo/:correo/:nickname" component={BuenasAccionesHijo} exact={true} />
         <Route path="/perfilHijoPadre/:correo/:nickname" component={PerfilHijoPadre} exact={true} />
         <Route path="/hijosPadre/:correo" component={HijosPadre} exact={true} />

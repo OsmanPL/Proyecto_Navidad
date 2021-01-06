@@ -12,29 +12,36 @@ import { accessibilityOutline, happyOutline, backspaceOutline, manOutline, bookO
 
 const urlServer = `http://localhost:3000`;
 
-const BuenasAccionesHijo: React.FC = () => {
-    let schemaAccion = {
-        ID_BuenaAccion_Realizada: '',
-        ID_BuenaAccion: '',
-        Titulo: '',
-        Descripcion: '',
-        Hijo: '',
-        Padre: '',
-        Estado: '',
-        Recompensa: ''
+const VerDeseos: React.FC = () => {
+    let schemaJuguete = {
+        ID_JugueteCarta: '',
+        Juguete_FK: '',
+        Carta_FK: '',
+        Cantidad: '',
+        Total: '',
+        Juguete: {
+            Id_JC: '',
+            Nombre: '',
+            Categoria: '',
+            Precio: '',
+            Imagen: '',
+            Edad: ''
+        }
     }
     let [padre, setPadre] = React.useState({});
     let [hijo, setHijo] = React.useState({});
-    let [acciones, setAcciones] = React.useState([schemaAccion]);
+    let [deseos, setDeseos] = React.useState([schemaJuguete]);
+    let [idC, setIdC] = React.useState(Number)
     let [correo, setCorreo] = React.useState(String);
     let [nicknameHijo, setNicknameHijo] = React.useState(String);
     useIonViewDidEnter(() => {
         let paths = window.location.pathname.split('/');
-        let corre = paths[paths.length - 2]
-        let nickn = paths[paths.length - 1]
-        cargar(corre, nickn)
+        let corre = paths[paths.length - 3]
+        let nickn = paths[paths.length - 2]
+        let idCT = paths[paths.length - 1]
+        cargar(corre, nickn, idCT)
     });
-    async function cargar(corre: String, nickname: String) {
+    async function cargar(corre: String, nickname: String, idCT: String) {
         await axios.get(urlServer + `/recuperarPadre/recuperarPadre/${corre}`)
             .then(response => {
                 setPadre({})
@@ -52,37 +59,28 @@ const BuenasAccionesHijo: React.FC = () => {
             .catch(error => {
                 alert(error);
             })
-        await axios.get(urlServer + `/padreBuenasAcciones/getBuenasAcciones/${corre}/${nickname}`)
+        await axios.delete(urlServer + `/padreCartas/lista/${idCT}`)
             .then(response => {
-                setAcciones([]);
-                setAcciones(response.data)
+                setDeseos([]);
+                setDeseos(response.data)
+                setIdC(Number(idCT))
             })
             .catch(error => {
                 alert(error);
             })
     }
 
-    async function confirmar(id: number, recompensa: number) {
-        await axios.put(urlServer + `/padreBuenasAcciones/buenaAccionrealizada`, {
-            id: id,
-            nickname: nicknameHijo,
-            cantidad: recompensa,
-            correo: correo
+    async function eliminar(id: number,precio:number) {
+        await axios.post(urlServer + `/padreCartas/deseo`, {
+            idcarta:idC, 
+            precioTotalProducto:precio,
+            idjp: id
         }).then(response => {
             alert(JSON.stringify(response.data))
         }).catch(error => {
             alert(error)
         })
-        cargar(correo, nicknameHijo)
-    }
-    async function denegar(id: Number) {
-        await axios.delete(urlServer + `/padreBuenasAcciones/eliminarBuenaAccion/${id}`)
-            .then(response => {
-                alert(JSON.stringify(response.data))
-            }).catch(error => {
-                alert(error)
-            })
-        cargar(correo, nicknameHijo)
+        cargar(correo, nicknameHijo, String(idC))
     }
 
     function clickPerfilHijo() {
@@ -94,7 +92,7 @@ const BuenasAccionesHijo: React.FC = () => {
     function clickCartas() {
         window.location.href = `http://localhost:8002/cartas/${correo}/${nicknameHijo}`
     }
-    function clickMensajes() {
+    function clickMensajes(){
         window.location.href = `http://localhost:8002/mensajes/${correo}/${nicknameHijo}`
     }
     function clickCerrar() {
@@ -149,36 +147,30 @@ const BuenasAccionesHijo: React.FC = () => {
                     <IonButtons slot="start">
                         <IonMenuButton></IonMenuButton>
                     </IonButtons>
-                    <IonTitle>Buenas Acciones Hijo</IonTitle>
+                    <IonTitle>Lista de Deseos</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent id="MenuHijo">
-                {acciones.map(accion => {
+                {deseos.map(deseo => {
                     return (
                         <IonCard>
                             <IonCardHeader>
-                                <IonCardSubtitle>ID: {accion.ID_BuenaAccion_Realizada}</IonCardSubtitle>
-                                <IonCardTitle>{accion.Titulo}</IonCardTitle>
+                                <IonCardSubtitle>ID: {deseo.ID_JugueteCarta}</IonCardSubtitle>
+                                <IonCardTitle>{deseo.Juguete.Nombre}</IonCardTitle>
                             </IonCardHeader>
 
                             <IonCardContent>
-                                {accion.Descripcion} <br />
-                                Recompensa: {accion.Recompensa} <br />
-                                Estado: {accion.Estado} <br />
+                                Categoria: {deseo.Juguete.Categoria} <br />
+                                Precio: {deseo.Total} <br />
+                                Cantidad: {deseo.Cantidad} 
                             </IonCardContent>
-                            <IonGrid>
-                                <IonRow>
-                                    <IonCol><IonButton expand="block" color="danger" onClick={() => denegar(Number(accion.ID_BuenaAccion_Realizada))}>Denegar</IonButton></IonCol>
-                                    <IonCol><IonButton expand="block" color="success" onClick={() => confirmar(Number(accion.ID_BuenaAccion_Realizada), Number(accion.Recompensa))}>Confirmar</IonButton></IonCol>
-                                </IonRow>
-                            </IonGrid>
+                            <IonButton expand="block" color="danger" onClick={()=>eliminar(Number(deseo.ID_JugueteCarta),Number(deseo.Total))}>Quitar Deseo</IonButton>
                         </IonCard>
                     )
                 })}
-
             </IonContent>
         </IonPage>
     );
 };
 
-export default BuenasAccionesHijo;
+export default VerDeseos;

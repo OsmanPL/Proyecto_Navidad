@@ -5,6 +5,6 @@ const publicacionController = require("../../controllers/controllersSanta/public
 router.get("/publicaciones", publicacionController.getPublicaciones)
 router.post("/crearPublicacion",publicacionController.crearPublicacion)
 router.put("/editarPublicacion",publicacionController.editarPublicacion)
-router.delete("/eliminarPublicacion",publicacionController.eliminarPublicacion)
+router.delete("/eliminarPublicacion/:id",publicacionController.eliminarPublicacion)
 
 module.exports = router

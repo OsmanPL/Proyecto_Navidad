@@ -131,3 +131,64 @@ exports.verCartas = async (req,res) =>{
 
     }
 }
+
+
+exports.entregarCarta =async (req,res)=>{
+    try {
+        const {nickname, descripcion, total} = req.body
+
+        let query = `SELECT * FROM HIJO WHERE Nickname='${nickname}'`;
+        let result = await BD.Open(query, [], false);
+        let usuarios = [];
+
+        usuarios = result.rows.map(user =>{
+            let usuariosSchema = {
+                "Nickname": user[0],
+                "Padre": user[7],
+                "Bastones":user[6]
+            }
+            return usuariosSchema
+        })
+
+        let queryPadre =  `SELECT * FROM DIRECCION WHERE Padre_FK='${usuarios[0].Padre}'`;
+        let resultPadre = await BD.Open(queryPadre, [], false);
+        let padre = {};
+
+        padre = resultPadre.rows.map(user =>{
+            let padreSchema = {
+                "ID_Direccion":user[0]
+            }
+            return padreSchema
+        })
+
+        let insertCarta = `INSERT INTO CARTA VALUES (NULL,'${usuarios[0].Nickname}','${usuarios[0].Padre}',${padre[0].ID_Direccion},'${descripcion}','Entregada',${total},default)`
+
+        await BD.Open(insertCarta, [], true);
+
+        usuarios[0].Bastones = usuarios[0].Bastones - total;
+
+        let actualizarBastones = `UPDATE HIJO SET Cantidad_Bastones=${usuarios[0].Bastones} WHERE  Nickname='${nickname}'`
+
+        await BD.Open(actualizarBastones, [], true);
+
+
+        let selectUltimaCarta = `SELECT * FROM CARTA WHERE HIJO_FK = '${nickname}' AND ROWNUM =1 ORDER BY ID_CARTA DESC`
+        let resultselect = await BD.Open(selectUltimaCarta,[],false);
+        let ultimacarta = [];
+
+        ultimacarta = resultselect.rows.map(ultima=>{
+            let schemaultima ={
+                "id_carta":ultima[0]
+            }
+            return schemaultima
+        })
+
+        res.json(ultimacarta[0]);
+
+    } catch (error) {
+
+        console.log("Error al realizar la consulta => ",error)
+        res.json({})
+
+    }
+}

@@ -12,21 +12,18 @@ import { accessibilityOutline, happyOutline, backspaceOutline, manOutline, bookO
 
 const urlServer = `http://localhost:3000`;
 
-const BuenasAccionesHijo: React.FC = () => {
-    let schemaAccion = {
-        ID_BuenaAccion_Realizada: '',
-        ID_BuenaAccion: '',
-        Titulo: '',
+const MensajesHijo: React.FC = () => {
+    let schemaMensajes = {
+        ID_Mensaje: '',
         Descripcion: '',
-        Hijo: '',
-        Padre: '',
-        Estado: '',
-        Recompensa: ''
+        Emisor: '',
+        Conversacion_FK: ''
     }
     let [padre, setPadre] = React.useState({});
     let [hijo, setHijo] = React.useState({});
-    let [acciones, setAcciones] = React.useState([schemaAccion]);
     let [correo, setCorreo] = React.useState(String);
+    let [mensajes, setMensajes] = React.useState([schemaMensajes]);
+    let [conversacion, setConversacion] = React.useState(Number);
     let [nicknameHijo, setNicknameHijo] = React.useState(String);
     useIonViewDidEnter(() => {
         let paths = window.location.pathname.split('/');
@@ -52,37 +49,15 @@ const BuenasAccionesHijo: React.FC = () => {
             .catch(error => {
                 alert(error);
             })
-        await axios.get(urlServer + `/padreBuenasAcciones/getBuenasAcciones/${corre}/${nickname}`)
+        await axios.get(urlServer + `/hijoConversacion/conversacion/${nickname}`)
             .then(response => {
-                setAcciones([]);
-                setAcciones(response.data)
+                setMensajes([]);
+                setMensajes(response.data.Mensajes)
+                setConversacion(Number(response.data.ID_Conversacion))
             })
             .catch(error => {
                 alert(error);
             })
-    }
-
-    async function confirmar(id: number, recompensa: number) {
-        await axios.put(urlServer + `/padreBuenasAcciones/buenaAccionrealizada`, {
-            id: id,
-            nickname: nicknameHijo,
-            cantidad: recompensa,
-            correo: correo
-        }).then(response => {
-            alert(JSON.stringify(response.data))
-        }).catch(error => {
-            alert(error)
-        })
-        cargar(correo, nicknameHijo)
-    }
-    async function denegar(id: Number) {
-        await axios.delete(urlServer + `/padreBuenasAcciones/eliminarBuenaAccion/${id}`)
-            .then(response => {
-                alert(JSON.stringify(response.data))
-            }).catch(error => {
-                alert(error)
-            })
-        cargar(correo, nicknameHijo)
     }
 
     function clickPerfilHijo() {
@@ -149,36 +124,27 @@ const BuenasAccionesHijo: React.FC = () => {
                     <IonButtons slot="start">
                         <IonMenuButton></IonMenuButton>
                     </IonButtons>
-                    <IonTitle>Buenas Acciones Hijo</IonTitle>
+                    <IonTitle>Mensajes</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent id="MenuHijo">
-                {acciones.map(accion => {
+            {mensajes.map(mensaje => {
                     return (
                         <IonCard>
                             <IonCardHeader>
-                                <IonCardSubtitle>ID: {accion.ID_BuenaAccion_Realizada}</IonCardSubtitle>
-                                <IonCardTitle>{accion.Titulo}</IonCardTitle>
+                                <IonCardSubtitle>ID: {mensaje.ID_Mensaje}</IonCardSubtitle>
+                                <IonCardTitle>{mensaje.Descripcion}</IonCardTitle>
                             </IonCardHeader>
 
                             <IonCardContent>
-                                {accion.Descripcion} <br />
-                                Recompensa: {accion.Recompensa} <br />
-                                Estado: {accion.Estado} <br />
+                                Enviado por: {mensaje.Emisor}
                             </IonCardContent>
-                            <IonGrid>
-                                <IonRow>
-                                    <IonCol><IonButton expand="block" color="danger" onClick={() => denegar(Number(accion.ID_BuenaAccion_Realizada))}>Denegar</IonButton></IonCol>
-                                    <IonCol><IonButton expand="block" color="success" onClick={() => confirmar(Number(accion.ID_BuenaAccion_Realizada), Number(accion.Recompensa))}>Confirmar</IonButton></IonCol>
-                                </IonRow>
-                            </IonGrid>
                         </IonCard>
                     )
                 })}
-
             </IonContent>
         </IonPage>
     );
 };
 
-export default BuenasAccionesHijo;
+export default MensajesHijo;

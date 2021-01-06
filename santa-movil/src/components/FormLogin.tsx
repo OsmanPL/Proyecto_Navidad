@@ -18,13 +18,10 @@ const FormLogin: React.FC = () => {
                 valido.auth = response.data.auth;
                 valido.tipo = response.data.tipo;
                 valido.user = response.data.user;
-                alert(JSON.stringify(response.data))
-                console.log(valido)
             })
             .catch(error => {
                 alert(error);
             })
-        console.log(valido)
         if (valido.auth == true) {
             console.log('si')
             if (valido.tipo === 'Hijo') {
@@ -37,7 +34,12 @@ const FormLogin: React.FC = () => {
             } else if (valido.tipo === 'Padre'){
                 alert("Usuario Padre " + valido.user + " ha iniciado sesion")
                 window.location.href = `http://localhost:8002/perfilPadre/${valido.user}`
+            } else if(valido.tipo === 'Santa'){
+                alert("Usuario Santa " + valido.user + " ha iniciado sesion")
+                window.location.href = `http://localhost:8002/publicacionesSanta/${valido.user}`
             }
+        }else{
+            alert("El Usuario No existe")
         }
     }
 

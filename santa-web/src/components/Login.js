@@ -4,41 +4,51 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import axios from 'axios';
 
-const urlServer =`http://localhost:3000`;
+const urlServer = `http://localhost:3000`;
 class Login extends Component {
-    state ={
-        form:{
-            user:'',
-            password:''
+    state = {
+        form: {
+            user: '',
+            password: ''
         }
     }
-    handleChange=async e=>{
+    handleChange = async e => {
         await this.setState({
-            form:{
+            form: {
                 ...this.state.form,
-                [e.target.name]:e.target.value
+                [e.target.name]: e.target.value
             }
         });
     }
 
-    iniciarSesion =async()=>{
-        var valido={};
-       await axios.get(urlServer+`/login/iniciarSesion/${this.state.form.user}/${this.state.form.password}`)
-        .then(response=>{
-            valido=response.data;
-        })
-        .catch(error=>{
-            alert(error);
-        })
+    iniciarSesion = async () => {
+        var valido = {};
+        await axios.get(urlServer + `/login/iniciarSesion/${this.state.form.user}/${this.state.form.password}`)
+            .then(response => {
+                valido = response.data;
+            })
+            .catch(error => {
+                alert(error);
+            })
 
-        if(valido.auth==true){
-            if(valido.tipo=='Hijo'){
-                alert("Usuario Hijo "+valido.user+" ha iniciado sesion")
+        if (valido.auth == true) {
+            console.log('si')
+            if (valido.tipo === 'Hijo') {
+                alert("Usuario Hijo " + valido.user + " ha iniciado sesion")
                 window.location.href = `http://localhost:8001/hijo/${valido.user}`
-            }else if(valido.tipo=='Administrador'){
-                alert("Usuario Administrador "+valido.user+" ha iniciado sesion")
+            } else if (valido.tipo === 'Administrador') {
+                console.log('si')
+                alert("Usuario Administrador " + valido.user + " ha iniciado sesion")
                 window.location.href = `http://localhost:8001/administrador`
+            } else if (valido.tipo === 'Padre') {
+                alert("Usuario Padre " + valido.user + " ha iniciado sesion")
+                window.location.href = `http://localhost:8002/perfilPadre/${valido.user}`
+            } else if (valido.tipo === 'Santa') {
+                alert("Usuario Santa " + valido.user + " ha iniciado sesion")
+                window.location.href = `http://localhost:8002/publicacionesSanta/${valido.user}`
             }
+        } else {
+            alert("El Usuario No existe")
         }
     }
 
@@ -54,13 +64,13 @@ class Login extends Component {
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label><Badge variant="danger">Password</Badge></Form.Label>
-                    <Form.Control type="password" placeholder="Ingrese Password" name="password" onChange={this.handleChange}/>
+                    <Form.Control type="password" placeholder="Ingrese Password" name="password" onChange={this.handleChange} />
                 </Form.Group>
-                <Button variant="danger" onClick={()=>this.iniciarSesion()}>
+                <Button variant="danger" onClick={() => this.iniciarSesion()}>
                     Ingresar
                 </Button>
                 <a href="/registro"> <Button variant="danger">
-                   Registrarse
+                    Registrarse
                 </Button></a>
             </Form>
         )

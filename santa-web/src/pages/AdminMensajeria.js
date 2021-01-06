@@ -44,8 +44,8 @@ class AdminMnesajeria extends Component {
             mensaje : this.state.form.mensaje
         }).then(response=>{
             alert(JSON.stringify(response.data));
+            this.setState({mensajes:[]})
             this.cargarConversaciones();
-            this.setState({mensajes:this.state.mensajes});
         }).catch(error=>{
             alert(error)
         });
@@ -66,6 +66,7 @@ class AdminMnesajeria extends Component {
         await axios.put(urlServer + `/adminConversacion/getMensajes`)
             .then(response => {
                 this.setState({ conversaciones: response.data });
+                this.setState({mensajes:[]})
             })
             .catch(error => {
                 alert(error);

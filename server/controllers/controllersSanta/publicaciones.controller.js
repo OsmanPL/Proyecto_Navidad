@@ -12,7 +12,7 @@ exports.getPublicaciones = async (req, res) => {
                 "ID_Publicacion": user[0],
                 "Publicacion": user[1],
                 "Imagen": user[2],
-                "Comentarios":[]
+                "Santa_FK":user[3]
             }
 
             return usuariosSchema
@@ -21,9 +21,9 @@ exports.getPublicaciones = async (req, res) => {
         for (i=0;i<usuarios.length;i++){
             let coment = `SELECT * FROM COMENTARIO WHERE Publicacion_FK=${usuarios[i].ID_Publicacion} ORDER BY ID_Comentario ASC`;
             let resultComent = await  BD.Open(coment, [], false);
-            let comentarios = [];
+            let comet = [];
 
-            comentarios = resultComent.rows.map(comentario=>{
+            comet = resultComent.rows.map(comentario=>{
                 let comentarioSchema ={
                     "ID_Comentario":comentario[0],
                     "Hijo_FK":comentario[1],
@@ -32,7 +32,7 @@ exports.getPublicaciones = async (req, res) => {
                 }
                 return comentarioSchema
             })
-            usuarios[i].Comentarios = comentarios
+            usuarios[i].Comentarios = comet
         }
 
         res.json(usuarios);
@@ -73,7 +73,7 @@ exports.editarPublicacion = async (req,res)=>{
 
 exports.eliminarPublicacion = async (req,res)=>{
     try {
-        const{id}=req.body
+        const{id}=req.params
         let sqlPublicacion = `DELETE FROM PUBLICACION WHERE ID_PUBLICACION=${id}`
         await BD.Open(sqlPublicacion,[],true);
 

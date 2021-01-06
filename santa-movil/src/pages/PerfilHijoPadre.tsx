@@ -144,6 +144,12 @@ const PerfilHijoPadre: React.FC = () => {
     function clickBuenasAcciones(){
         window.location.href = `http://localhost:8002/buenasAccionesHijo/${correo}/${nicknameHijo}`
     }
+    function clickCartas(){
+        window.location.href = `http://localhost:8002/cartas/${correo}/${nicknameHijo}`
+    }
+    function clickMensajes(){
+        window.location.href = `http://localhost:8002/mensajes/${correo}/${nicknameHijo}`
+    }
     function clickCerrar(){
         window.location.href = `http://localhost:8002/perfilPadre/${correo}`
     }
@@ -171,13 +177,13 @@ const PerfilHijoPadre: React.FC = () => {
                             </IonItem>
                         </IonMenuToggle>
                         <IonMenuToggle>
-                            <IonItem   routerDirection="none">
+                            <IonItem   routerDirection="none" onClick={()=>clickCartas()}>
                                 <IonIcon color="primary" slot="start" icon={giftOutline} />
                                 <IonLabel>Ver Cartas</IonLabel>
                             </IonItem>
                         </IonMenuToggle>
                         <IonMenuToggle>
-                            <IonItem   routerDirection="none">
+                            <IonItem   routerDirection="none" onClick={() => clickMensajes()}>
                                 <IonIcon color="primary" slot="start" icon={chatbubbleEllipsesOutline} />
                                 <IonLabel>Ver Mensajes</IonLabel>
                             </IonItem>

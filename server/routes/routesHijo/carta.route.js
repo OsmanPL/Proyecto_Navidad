@@ -4,5 +4,6 @@ const cartaController = require("../../controllers/controllersHijo/carta.control
 
 router.post("/carta",cartaController.enviarCarta)
 router.get("/verCartas/:nickname",cartaController.verCartas)
+router.put("/entregarCarta",cartaController.entregarCarta)
 
 module.exports = router

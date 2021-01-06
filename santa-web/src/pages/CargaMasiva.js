@@ -175,7 +175,7 @@ class CargaMasiva extends Component {
     }
     for (var i = 0; i < this.state.cartas.length; i++) {
       var carta = {};
-      await axios.post(urlServer + `/hijoCarta/carta`, {
+      await axios.put(urlServer + `/hijoCarta/entregarCarta`, {
         nickname: this.state.cartas[i].nickname,
         descripcion: this.state.cartas[i].descripcion,
         total: this.state.cartas[i].total
