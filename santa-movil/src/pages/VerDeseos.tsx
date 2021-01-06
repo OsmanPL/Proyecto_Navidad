@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 import { accessibilityOutline, happyOutline, backspaceOutline, manOutline, bookOutline, giftOutline, chatboxEllipsesOutline, exitOutline, chatbubbleEllipsesOutline } from 'ionicons/icons';
 
-const urlServer = `http://localhost:3000`;
+const urlServer = `http://34.70.211.238:3000`;
 
 const VerDeseos: React.FC = () => {
     let schemaJuguete = {
@@ -84,19 +84,19 @@ const VerDeseos: React.FC = () => {
     }
 
     function clickPerfilHijo() {
-        window.location.href = `http://localhost:8002/perfilHijoPadre/${correo}/${nicknameHijo}`
+        window.location.href = `http://34.70.211.238:8002/perfilHijoPadre/${correo}/${nicknameHijo}`
     }
     function clickBuenasAcciones() {
-        window.location.href = `http://localhost:8002/buenasAccionesHijo/${correo}/${nicknameHijo}`
+        window.location.href = `http://34.70.211.238:8002/buenasAccionesHijo/${correo}/${nicknameHijo}`
     }
     function clickCartas() {
-        window.location.href = `http://localhost:8002/cartas/${correo}/${nicknameHijo}`
+        window.location.href = `http://34.70.211.238:8002/cartas/${correo}/${nicknameHijo}`
     }
     function clickMensajes(){
-        window.location.href = `http://localhost:8002/mensajes/${correo}/${nicknameHijo}`
+        window.location.href = `http://34.70.211.238:8002/mensajes/${correo}/${nicknameHijo}`
     }
     function clickCerrar() {
-        window.location.href = `http://localhost:8002/perfilPadre/${correo}`
+        window.location.href = `http://34.70.211.238:8002/perfilPadre/${correo}`
     }
     return (
 

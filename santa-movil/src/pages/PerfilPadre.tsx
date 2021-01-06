@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 import {accessibilityOutline,happyOutline,backspaceOutline } from 'ionicons/icons';
 
-const urlServer = `http://localhost:3000`;
+const urlServer = `http://34.70.211.238:3000`;
 
 const PerfilPadre: React.FC = () => {
     let [padre, setPadre] = React.useState({});
@@ -57,10 +57,10 @@ const PerfilPadre: React.FC = () => {
 
     }
     function clickPerfil() {
-        window.location.href = `http://localhost:8002/perfilPadre/${correo}`
+        window.location.href = `http://34.70.211.238:8002/perfilPadre/${correo}`
     }
     function clickHijos() {
-        window.location.href = `http://localhost:8002/hijosPadre/${correo}`
+        window.location.href = `http://34.70.211.238:8002/hijosPadre/${correo}`
     }
     return (
 
