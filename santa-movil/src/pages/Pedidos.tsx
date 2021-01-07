@@ -208,7 +208,7 @@ const Pedidos: React.FC = () => {
                                 Longitud: {direccion.Longitud} <br />
                             </IonCardContent>
                             <LoadScript
-                                googleMapsApiKey="AIzaSyBstgokFo5gE1ZMu8r7_8-8hA6Tbo8jGPs"
+                                googleMapsApiKey=""
                             >
                                 <GoogleMap
                                     mapContainerStyle={{
