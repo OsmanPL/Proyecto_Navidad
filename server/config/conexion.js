@@ -1,9 +1,9 @@
 const oracledb = require('oracledb');
 
 credentials = {
-    user: "osmanperez",
-    password: "201801229",
-    connectString: "34.70.211.238/ORCL18"
+    user: "",
+    password: "",
+    connectString: ""
 }
 
 try {
