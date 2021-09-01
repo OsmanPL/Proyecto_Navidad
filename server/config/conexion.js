@@ -7,7 +7,7 @@ credentials = {
 }
 
 try {
-    oracledb.initOracleClient({libDir: 'C:\\Oracle\\instantclient_19_9'});
+    oracledb.initOracleClient({libDir: ''});
 } catch (err) {
     console.error('No se puede conectar al cliente!');
 }
